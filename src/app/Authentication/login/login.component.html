@@ -8,7 +8,7 @@
       <input type="password" id="password" class="form-control" placeholder="Contraseña"  formControlName="password" required>
       <button class="btn btn-lg btn-primary btn-block btn-signin" [disabled]="!login.valid"  type="submit">Inicia sesión</button>
     </form>
-    <a href="#" class="forgot-password">
+    <a routerLink="../signIn" class="forgot-password">
       No tienes cuenta? Crea una aqui!
     </a>
   </div>
