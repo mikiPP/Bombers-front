@@ -1,5 +1,15 @@
 <div class="container">
-  <div class="row">
-    <h1>Welcome to bombers app</h1>
+  <div class="form-card card-container">
+    <img id="profile-img" class="card-img" src="../../../assets/Logo.jpg" />
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-class" [formGroup]="checkDni" (ngSubmit)="onCheckDni()">
+      <p> Inserta tu dni de esta forma : 12345678-E</p>
+      <label for="dni" class="reauth-email float-left">DNI:</label>
+      <input type="text" id="dni" class="form-control" formControlName="dni" required autofocus >
+      <button class="btn btn-lg btn-primary btn-block btn-form" [disabled]="!checkDni.valid"  type="submit">Comprobar dni</button>
+    </form>
+
+    <p *ngIf="tried === true"> El dni introducido es incorrecto </p>
   </div>
 </div>
+
