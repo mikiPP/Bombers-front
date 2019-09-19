@@ -29,8 +29,8 @@ onCheckDni() {
       (response: Promise<boolean> ) => {
         (response) ? this.router.navigateByUrl('auth/login') : this.tried = true;
       },
-      error => false
-    );
+      error1 => false
+      );
   }
 
 }

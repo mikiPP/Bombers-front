@@ -9,7 +9,7 @@
       <button class="btn btn-lg btn-primary btn-block btn-form" [disabled]="!checkDni.valid"  type="submit">Comprobar dni</button>
     </form>
 
-    <p *ngIf="tried === true"> El dni introducido es incorrecto </p>
+    <p *ngIf="tried === true" class="text-danger"> El dni introducido es incorrecto </p>
   </div>
 </div>
 

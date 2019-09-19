@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../Auth.service';
+import {User} from '../../../Shared/Models/User.model';
+import {last} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,16 +14,25 @@ export class SignInComponent implements OnInit {
     email: new FormControl(''),
     name: new FormControl(''),
     password: new FormControl(''),
-    shift:  new FormControl('')
+    dni:  new FormControl(''),
+    turn: new FormControl('')
   });
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onSignIn() {
-    console.warn(this.signIn.value);
+    this.authService.signIn(new User(this.signIn.value.dni , this.signIn.value.name, this.signIn.value.email,
+      this.signIn.value.password , this.signIn.value.turn ))
+      .pipe(last())
+      .subscribe(
+        (response: Response) => {
+          console.log(response);
+        },
+        error1 => {console.log(error1); }
+      );
   }
 
 }
