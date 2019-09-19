@@ -7,6 +7,9 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./signIn.component.css', '../../../Shared/Style/style.css']
 })
 export class SignInComponent implements OnInit {
+  /**
+   * PROPERTIES
+   */
   signIn = new FormGroup({
     email: new FormControl(''),
     name: new FormControl(''),
@@ -14,8 +17,14 @@ export class SignInComponent implements OnInit {
     shift:  new FormControl('')
   });
 
+  /**
+   * CONSTRUCTOR
+   */
   constructor() { }
 
+  /**
+   * BEHAVIOURS
+   */
   ngOnInit() {
   }
 

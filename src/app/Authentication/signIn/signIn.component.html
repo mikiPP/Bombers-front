@@ -1,30 +1,29 @@
 <div class="container">
-  <div class="form-card card-container">
-    <img id="profile-img" class="card-img" src="../../../assets/Logo.jpg" />
-    <p id="profile-name" class="profile-name-card"></p>
+    <div class="form-card card-container">
+        <img id="profile-img" class="card-img" src="../../../assets/Logo.jpg" />
+        <p id="profile-name" class="profile-name-card"></p>
 
-    <form class="form-class" [formGroup]="signIn" (ngSubmit)="onSignIn()" >
-      <span id="reauth-email" class="reauth-email"></span>
+        <form class="form-class" [formGroup]="signIn" (ngSubmit)="onSignIn()">
+            <span id="reauth-email" class="reauth-email"></span>
 
-      <input type="email" id="email" class="form-control" placeholder="Email" required  formControlName="email"  autofocus
-             name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-      <input type="text" id="name" class="form-control" placeholder="Nombre" required  formControlName="name" >
-      <input type="text" id="dni" class="form-control" placeholder="Dni"  formControlName="dni" pattern="^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$" required>
-      <input type="password" id="password" class="form-control" placeholder="Contraseña" required
-             formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-      <label for="shift">Turno</label>
+            <input type="email" id="email" class="form-control" placeholder="Email" required formControlName="email" autofocus name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            <input type="text" id="name" class="form-control" placeholder="Nombre" required formControlName="name">
+            <input type="text" id="dni" class="form-control" placeholder="Dni" formControlName="dni" pattern="^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$" required>
+            <input type="password" id="password" class="form-control" placeholder="Contraseña" required formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+            <label for="shift">Turno</label>
 
-      <select  id="shift" required  formControlName="shift">
-      <option selected value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-      <option value="D">D</option>
+            <select id="shift" required formControlName="shift">
+        <option selected value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
       </select>
 
-      <button class="form-btn btn-lg btn-primary btn-block btn-form" [disabled]="!signIn.valid" type="submit"> Crea tu cuenta!</button>
-    </form>
-    <a routerLink="../login" class="forgot-password">
-      Tienes cuenta? Inicia sesión aqui!
+            <button class="form-btn btn-lg btn-primary btn-block btn-form" [disabled]="!signIn.valid" type="submit"> Crea tu
+        cuenta!</button>
+        </form>
+        <a routerLink="../login" class="forgot-password">
+      ¿Tienes cuenta? ¡Inicia sesión aqui!
     </a>
-  </div>
+    </div>
 </div>
