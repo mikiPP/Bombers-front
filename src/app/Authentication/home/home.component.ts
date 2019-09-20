@@ -4,6 +4,7 @@ import {Dni} from '../../../Shared/Models/Dni.model';
 import {AuthService} from '../Auth.service';
 import {Router} from '@angular/router';
 import {last} from 'rxjs/operators';
+import {parseHttpResponse} from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +29,11 @@ onCheckDni() {
     .subscribe(
       (response: Promise<boolean> ) => {
         (response) ? this.router.navigateByUrl('auth/login') : this.tried = true;
+        localStorage.setItem('dniChecked', (response) ? 'true' : 'false');
       },
       error1 => false
       );
+
   }
 
 }

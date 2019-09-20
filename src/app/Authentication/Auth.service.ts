@@ -27,6 +27,9 @@ export class AuthService {
       name: user.name,
       turn: user.turn,
     });
+  }
 
+  dniChecked(): boolean {
+    return (localStorage.getItem('dniChecked') === 'true');
   }
 }

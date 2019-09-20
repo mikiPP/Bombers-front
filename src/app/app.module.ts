@@ -9,6 +9,7 @@ import { SignInComponent } from './Authentication/signIn/signIn.component';
 import { HomeComponent } from './Authentication/home/home.component';
 import {RouterModule} from '@angular/router';
 import {AuthService} from './Authentication/Auth.service';
+import {AuthGuard} from '../Shared/Guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {AuthService} from './Authentication/Auth.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
