@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="form-card card-container">
+    <img alt="" class="card-img" id="profile-img" src="../../../assets/Logo.jpg"/>
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-class" [formGroup]="checkDni" (ngSubmit)="onCheckDni()">
+      <p> Inserta tu dni de esta forma : 12345678-E</p>
+      <label for="dni" class="reauth-email float-left">DNI:</label>
+      <input type="text" id="dni" class="form-control" formControlName="dni" required autofocus >
+      <button class="btn btn-lg btn-primary btn-block btn-form" [disabled]="!checkDni.valid"  type="submit">Comprobar dni</button>
+      <p (click)="toLogin()" class="forgot-password fake-link mt-4">
+        Tienes cuenta? Inicia sesión aqui!
+      </p>
+    </form>
+
+    <p *ngIf="tried === true" class="text-danger"> El dni introducido es incorrecto </p>
+
+  </div>
+</div>
+

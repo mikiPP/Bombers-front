@@ -1,6 +1,6 @@
 <div class="container">
   <div class="form-card card-container">
-    <img id="profile-img" class="card-img" src="../../../assets/Logo.jpg" />
+    <img alt="" class="card-img" id="profile-img" src="../../../assets/Logo.jpg"/>
     <p id="profile-name" class="profile-name-card"></p>
     <form class="form-class" [formGroup]="login" (ngSubmit)="onLogin()">
       <span id="reauth-email" class="reauth-email"></span>
@@ -8,8 +8,7 @@
       <input type="password" id="password" class="form-control" placeholder="Contraseña"  formControlName="password" required>
       <button class="btn btn-lg btn-primary btn-block btn-form" [disabled]="!login.valid"  type="submit">Inicia sesión</button>
     </form>
-    <a routerLink="../signIn" class="forgot-password">
-      No tienes cuenta? Crea una aqui!
-    </a>
+
+    <p *ngIf="tried === true" class="text-danger"> El usuario y/o contraseña son incorrectos </p>
   </div>
 </div>

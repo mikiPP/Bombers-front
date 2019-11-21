@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AuthService} from '../Auth.service';
 import {User} from '../../../Shared/Models/User.model';
 import {last} from 'rxjs/operators';
+import {Dni} from '../../../Shared/Models/Dni.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,24 +14,28 @@ import {last} from 'rxjs/operators';
 export class SignInComponent implements OnInit {
   signIn = new FormGroup({
     email: new FormControl(''),
-    name: new FormControl(''),
-    password: new FormControl(''),
-    dni:  new FormControl(''),
-    turn: new FormControl('')
+      password: new FormControl('')
   });
 
-  constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private router: Router) {
+    }
 
   ngOnInit() {
   }
 
   onSignIn() {
-    this.authService.signIn(new User(this.signIn.value.dni , this.signIn.value.name, this.signIn.value.email,
-      this.signIn.value.password , this.signIn.value.turn ))
+
+      const {email, password} = this.signIn.value;
+      const user = new User();
+      user.email = email;
+      user.password = password;
+      user.dni = new Dni(localStorage.getItem('dni'));
+
+      this.authService.signIn(user)
       .pipe(last())
       .subscribe(
         (response: Response) => {
-          console.log(response);
+            this.router.navigateByUrl('./login');
         },
         error1 => {console.log(error1); }
       );

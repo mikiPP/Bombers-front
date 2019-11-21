@@ -127,5 +127,10 @@
   color: rgb(12, 97, 33);
 }
 
+.fake-link:hover,
+.fake-link:focus {
+  cursor: pointer;
+}
+
 
 /*------------------ END AUTH FORM STYLE  ------------------ */

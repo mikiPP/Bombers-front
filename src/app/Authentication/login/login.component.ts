@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../Auth.service';
+import {User} from '../../../Shared/Models/User.model';
+import {last} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +16,29 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor() { }
+  tried = false;
+
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   onLogin() {
-    console.warn(this.login.value);
+
+    const {email, password} = this.login.value;
+    const user = new User();
+    user.email = email;
+    user.password = password;
+
+    this.authService.login(user)
+        .pipe(last())
+        .subscribe(
+            (response: any) => {
+              this.router.navigateByUrl('/home');
+            },
+            () => this.tried = true
+        );
+
   }
 }

@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {catchError, last} from 'rxjs/operators';
 import {Dni} from '../../Shared/Models/Dni.model';
 import {Observable} from 'rxjs';
 import {User} from '../../Shared/Models/User.model';
@@ -13,19 +12,26 @@ export class AuthService {
 
   checkDni(dni: Dni): Observable<any> {
 
-    return this.http.post('bombers/api/auth/dni', {
-      dni : dni.dni});
+    return this.http.get('api/dni?dni=' + dni.dni);
+
+  }
+
+
+  login(user: User): Observable<any> {
+
+    return this.http.post('api/login', {
+      email: user.email,
+      password: user.password
+    });
   }
 
   signIn(user: User): any {
-    return this.http.post('bombers/api/auth/sign-up', {
+    return this.http.post('api/auth/sign-up', {
       dni: {
         dni: user.dni.dni
       },
       email: user.email,
-      password: user.password,
-      name: user.name,
-      turn: user.turn,
+      password: user.password
     });
   }
 
