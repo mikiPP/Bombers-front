@@ -5,13 +5,13 @@ import {AuthService} from '../../app/Authentication/Auth.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class TokenGuard implements CanActivate {
 
     constructor(private authService: AuthService) {
     }
 
 
     canActivate(): boolean {
-        return (this.authService.dniChecked());
+        return (this.authService.tokenChecked());
     }
 }

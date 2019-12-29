@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from '../Shared/Guards/auth.guard';
 import {IndexComponent} from './Authentication/index/index.component';
+import {TokenGuard} from '../Shared/Guards/token.guard';
 
 const appRoutes: Routes = [
     {
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
             {path: '', component: IndexComponent},
         ]
     },
-    {path: 'home', component: HomeComponent},
+    {path: 'home', component: HomeComponent , canActivate: [TokenGuard]},
     {path: '', redirectTo: '/auth', pathMatch: 'full'}
 ];
 

@@ -5,3 +5,7 @@
 
 .jumbotron{background: none;
   padding-left: 0;}
+
+.notAllowedPointer {
+  cursor: not-allowed !important;
+}

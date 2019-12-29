@@ -7,38 +7,54 @@ import {Dni} from '../../../Shared/Models/Dni.model';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './signIn.component.html',
-  styleUrls: ['./signIn.component.css', '../../../Shared/Style/style.css']
+    selector: 'app-sign-in',
+    templateUrl: './signIn.component.html',
+    styleUrls: ['./signIn.component.css', '../../../Shared/Style/style.css']
 })
 export class SignInComponent implements OnInit {
-  signIn = new FormGroup({
-    email: new FormControl(''),
-      password: new FormControl('')
-  });
+
+    tried: Boolean;
+    doesPasswordMatch: Boolean;
+
+    signIn = new FormGroup({
+        email: new FormControl(''),
+        password: new FormControl(''),
+        passwordSecurity: new FormControl('')
+    });
 
     constructor(private authService: AuthService, private router: Router) {
+        this.doesPasswordMatch = true;
+        this.tried = false;
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  onSignIn() {
+    onSignIn() {
 
-      const {email, password} = this.signIn.value;
-      const user = new User();
-      user.email = email;
-      user.password = password;
-      user.dni = new Dni(localStorage.getItem('dni'));
+        const {email, password, passwordSecurity} = this.signIn.value;
 
-      this.authService.signIn(user)
-      .pipe(last())
-      .subscribe(
-        (response: Response) => {
-            this.router.navigateByUrl('./login');
-        },
-        error1 => {console.log(error1); }
-      );
-  }
+        if (password === passwordSecurity) {
+
+            const user = new User();
+            user.email = email;
+            user.password = password;
+            user.dni = new Dni(localStorage.getItem('dni'));
+
+            this.authService.signIn(user)
+                .pipe(last())
+                .subscribe(
+                    (response: Response) => {
+                        this.router.navigateByUrl('auth/login');
+                    },
+                    error1 => {
+                        this.tried = true;
+                    }
+                );
+
+        } else {
+            this.doesPasswordMatch = false;
+        }
+    }
 
 }

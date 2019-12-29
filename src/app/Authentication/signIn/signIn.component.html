@@ -3,15 +3,17 @@
     <img alt="" class="card-img" id="profile-img" src="../../../assets/Logo.jpg"/>
     <p id="profile-name" class="profile-name-card"></p>
 
-    <form class="form-class" [formGroup]="signIn" (ngSubmit)="onSignIn()" >
-      <span id="reauth-email" class="reauth-email"></span>
+    <!-- TODO: Cuando añada el bloque del usuario reactivar los campos de turno y nombre.    -->
 
+    <form class="form-class" [formGroup]="signIn" (ngSubmit)="onSignIn()" >
       <input type="email" id="email" class="form-control" placeholder="Email" required  formControlName="email"  autofocus
              name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
       <!--  <input type="text" id="name" class="form-control" placeholder="Nombre" required  formControlName="name" >
         <input type="text" id="dni" class="form-control" placeholder="Dni"  formControlName="dni"  required> -->
       <input type="password" id="password" class="form-control" placeholder="Contraseña" required
              formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+      <input type="password" id="passwordSecurity" class="form-control" placeholder="Repita su contraseña" required
+             formControlName="passwordSecurity" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
       <!--  <label for="turn">Turno</label>
 
        <select  id="turn" required  formControlName="turn">
@@ -21,8 +23,19 @@
         <option value="D">D</option>
         </select>
       -->
-      <button class="form-btn btn-lg btn-primary btn-block btn-form" [disabled]="!signIn.valid" type="submit"> Crea tu cuenta!</button>
+      <button [class.notAllowedPointer]="!signIn.valid" class="form-btn btn-lg btn-primary btn-block btn-form" [disabled]="!signIn.valid" type="submit">
+        Crea tu cuenta!
+      </button>
     </form>
+
+    <ul *ngIf=" !signIn.get('password').valid && signIn.get('password').touched " class="text-danger">
+      <li>La contraseña debe contener un carácter especial: ?!_:. </li>
+      <li>Un número:</li>
+      <li>Una letra mayúscula</li>
+      <li>Y como mínimo 8 caractéres</li>
+    </ul>
+    <p *ngIf="doesPasswordMatch === false" class="text-danger"> Las contraseñas no coinciden. </p>
+    <p *ngIf="tried === true" class="text-danger"> Ha ocurrido un error su cuenta no se ha podido crear. </p>
 
   </div>
 </div>

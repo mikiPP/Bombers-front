@@ -4,6 +4,7 @@ import {AuthService} from '../Auth.service';
 import {User} from '../../../Shared/Models/User.model';
 import {last} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(user)
         .pipe(last())
         .subscribe(
-            (response: any) => {
+            (data: HttpResponse<any>) => {
+              localStorage.setItem("token",data.headers.get('authorization'));
               this.router.navigateByUrl('/home');
             },
             () => this.tried = true
