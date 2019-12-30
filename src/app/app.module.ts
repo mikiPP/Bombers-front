@@ -13,21 +13,22 @@ import {AuthGuard} from '../Shared/Guards/auth.guard';
 import {HomeComponent} from './home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignInComponent,
-      IndexComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [AuthService, AuthGuard],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignInComponent,
+        IndexComponent,
+        HomeComponent
+    ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        RouterModule,
+        AppRoutingModule,
+        HttpClientModule
+    ],
+    providers: [AuthService, AuthGuard],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

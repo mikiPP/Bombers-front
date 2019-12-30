@@ -7,11 +7,7 @@ import {AuthService} from '../../app/Authentication/Auth.service';
 })
 export class TokenGuard implements CanActivate {
 
-    constructor(private authService: AuthService) {
-    }
-
-
     canActivate(): boolean {
-        return (this.authService.tokenChecked());
+        return AuthService.tokenChecked();
     }
 }

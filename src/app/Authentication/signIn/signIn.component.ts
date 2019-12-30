@@ -44,10 +44,10 @@ export class SignInComponent implements OnInit {
             this.authService.signIn(user)
                 .pipe(last())
                 .subscribe(
-                    (response: Response) => {
+                    () => {
                         this.router.navigateByUrl('auth/login');
                     },
-                    error1 => {
+                    () => {
                         this.tried = true;
                     }
                 );

@@ -9,43 +9,42 @@ import {map} from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  private  readonly uri = "api/" ;
+    private readonly uri = 'api/';
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
-  checkDni(dni: Dni): Observable<any> {
+    static dniChecked(): boolean {
+        return (localStorage.getItem('dniChecked') === 'true');
+    }
 
-    return this.http.get(this.uri + 'dni?dni=' + dni.dni);
+    static tokenChecked(): boolean {
+        return (localStorage.getItem('token') !== null);
+    }
 
-  }
+    checkDni(dni: Dni): Observable<any> {
 
+        return this.http.get(this.uri + 'dni?dni=' + dni.dni);
+    }
 
-  login(user: User): Observable<any> {
+    login(user: User): Observable<any> {
 
-    return this.http.post<any>(this.uri + 'login', {
-      email: user.email,
-      password: user.password
-    }, {observe: 'response' as 'body'})
-        .pipe(map(user => {
-            return user;
-        }));
-  }
+        return this.http.post<any>(this.uri + 'login', {
+            email: user.email,
+            password: user.password
+        }, {observe: 'response' as 'body'})
+            .pipe(map(user => {
+                return user;
+            }));
+    }
 
-  signIn(user: User): any {
-    return this.http.post(this.uri + '/auth/sign-up', {
-      dni: {
-        dni: user.dni.dni
-      },
-      email: user.email,
-      password: user.password
-    });
-  }
-
-  dniChecked(): boolean {
-    return (localStorage.getItem('dniChecked') === 'true');
-  }
-
-    tokenChecked(): boolean {
-        return (localStorage.getItem('token') !== null )
+    signIn(user: User): any {
+        return this.http.post(this.uri + '/auth/sign-up', {
+            dni: {
+                dni: user.dni.dni
+            },
+            email: user.email,
+            password: user.password
+        });
     }
 }

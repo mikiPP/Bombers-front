@@ -5,22 +5,23 @@ import {AuthService} from '../Auth.service';
 import {Router} from '@angular/router';
 import {last} from 'rxjs/operators';
 
-
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css', '../../../Shared/Style/style.css']
 })
-export class IndexComponent implements OnInit {
-  private tried = false;
+export class IndexComponent {
 
-  checkDni = new FormGroup({
-    dni: new FormControl('')
-  });
-  constructor(private authService: AuthService, private router: Router) { }
+    // This variable is to know if the dni have been checked
+    private tried :Boolean;
 
-  ngOnInit() {
-  }
+    checkDni = new FormGroup({
+        dni: new FormControl('')
+    });
+
+    constructor(private authService: AuthService, private router: Router) {
+        this.tried = false;
+    }
 
     toLogin(): void {
         localStorage.setItem('dniChecked', 'true');
@@ -29,23 +30,23 @@ export class IndexComponent implements OnInit {
 
     onCheckDni(): void {
 
-  this.authService.checkDni(new Dni(this.checkDni.value.dni))
-    .pipe(last())
-    .subscribe(
-        (response: Response) => {
+        this.authService.checkDni(new Dni(this.checkDni.value.dni))
+            .pipe(last())
+            .subscribe(
+                (response: Response) => {
 
-            if (response) {
-                this.router.navigateByUrl('auth/signIn');
-            }
-            localStorage.setItem('dniChecked', 'true');
-            localStorage.setItem('dni', this.checkDni.value.dni);
-        },
-        () => {
-            this.tried = true;
-            localStorage.setItem('dniChecked', 'false');
-        }
-      );
+                    if (response) {
+                        this.router.navigateByUrl('auth/signIn');
+                    }
+                    localStorage.setItem('dniChecked', 'true');
+                    localStorage.setItem('dni', this.checkDni.value.dni);
+                },
+                () => {
+                    this.tried = true;
+                    localStorage.setItem('dniChecked', 'false');
+                }
+            );
 
-  }
+    }
 
 }

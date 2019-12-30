@@ -15,7 +15,7 @@ const appRoutes: Routes = [
             {path: '', component: IndexComponent},
         ]
     },
-    {path: 'home', component: HomeComponent , canActivate: [TokenGuard]},
+    {path: 'home', component: HomeComponent, canActivate: [TokenGuard]},
     {path: '', redirectTo: '/auth', pathMatch: 'full'}
 ];
 

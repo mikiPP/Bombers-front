@@ -1,11 +1,14 @@
-.center-block{margin-top: 50px;
-  position :relative !important;
-  left: 40% !important;
+.center-block {
+    margin-top: 50px;
+    position: relative !important;
+    left: 40% !important;
 }
 
-.jumbotron{background: none;
-  padding-left: 0;}
+.jumbotron {
+    background: none;
+    padding-left: 0;
+}
 
 .notAllowedPointer {
-  cursor: not-allowed !important;
+    cursor: not-allowed !important;
 }

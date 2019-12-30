@@ -11,18 +11,18 @@ import {HttpResponse} from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../../../Shared/Style/style.css']
 })
-export class LoginComponent implements OnInit {
-  login = new FormGroup({
+export class LoginComponent  {
+
+    // This variable is to know if the login have been realized
+    tried : Boolean;
+
+    login = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   });
 
-  tried = false;
-
   constructor(private authService: AuthService, private router: Router) {
-  }
-
-  ngOnInit() {
+      this.tried = false;
   }
 
   onLogin() {

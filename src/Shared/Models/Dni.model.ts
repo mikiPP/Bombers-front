@@ -1,9 +1,9 @@
 export class Dni {
 
-  public dni: string;
+    public dni: string;
 
-  constructor(dni: string) {
-    this.dni = dni;
-  }
+    constructor(dni: string) {
+        this.dni = dni;
+    }
 
 }

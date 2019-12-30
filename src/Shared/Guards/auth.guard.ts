@@ -7,11 +7,8 @@ import {AuthService} from '../../app/Authentication/Auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-    constructor(private authService: AuthService) {
-    }
-
 
     canActivate(): boolean {
-        return (this.authService.dniChecked());
+        return AuthService.dniChecked();
     }
 }
